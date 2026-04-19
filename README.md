@@ -1,149 +1,209 @@
-# ਸ਼ਬਦਾਵਲੀ — Interpreter Flashcard App
+# ਸ਼ਬਦਾਵਲੀ — Interpreter Flashcard Trainer
 
-A free, offline-first flashcard trainer for Punjabi community interpreters working in legal, social work, medical and refugee contexts in Canada.
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-iOS%20%7C%20Android%20%7C%20Web-gold?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Cards-280%2B-darkgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Languages-8-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Free-Always-orange?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <b>A free, offline-first flashcard trainer for Punjabi community interpreters</b><br/>
+  Legal · Social Work · Medical · IRB / Refugee · 8 languages · 3 study modes
+</p>
 
 ---
 
-## Quick Start
+## 🌐 Live Web App
 
+**Try it instantly — no install needed:**
+
+> **https://goelsakshi742.github.io/shabdavali-app**
+
+Works on any phone browser. No login. No download. Always free.
+
+---
+
+## 📱 Screenshots
+
+### Home Screen
+![Home Screen](docs/screenshots/home.png)
+*280 built-in cards across 4 domains · 8 quiz languages · progress bars per domain*
+
+### Multiple Choice Quiz
+![Quiz Screen](docs/screenshots/quiz.png)
+*3 study modes: Flashcards · Multiple Choice · Identify Term*
+
+### Settings & Progress
+![Settings Screen](docs/screenshots/settings.png)
+*Per-domain progress tracking · accuracy stats · language switcher*
+
+---
+
+## ✨ Features
+
+| Feature | Detail |
+|---|---|
+| 📚 280 built-in cards | Legal (80) · Social Work (50) · Medical (110) · IRB/Refugee (40) |
+| 🌍 8 quiz languages | Punjabi · Spanish · Arabic · Hindi · French · Mandarin · Dari · Tigrinya |
+| 🎯 3 study modes | Flashcards · Multiple Choice · Identify Term |
+| 📊 Progress tracking | Per-domain percentage · accuracy · last studied date |
+| ✏️ Custom decks | Create your own flashcard decks with any terms |
+| 📱 Works offline | All data stored on device — no internet needed after first load |
+| 🆓 Free forever | No subscription · No ads · No login required |
+
+---
+
+## 📖 Glossary Sources
+
+| Domain | Source |
+|---|---|
+| **Legal** | Canadian Legal Dictionary · IRB Punjabi Glossary |
+| **Social Work** | CASW Social Work Glossary · IFSW Global Definitions |
+| **Medical** | Abbotsford Family Medicine — *A Practical Guide to the Punjabi Language in Medicine* (2019) · CCHI Mini-Glossaries |
+| **IRB / Refugee** | Immigration and Refugee Board Glossary (Levels 1–4) · IRPA Terminology |
+
+---
+
+## 📲 How to Access
+
+### Option 1 — Web Browser (easiest, no install)
+Open on any device:
+```
+https://goelsakshi742.github.io/shabdavali-app
+```
+
+### Option 2 — Expo Go on iPhone (free)
+1. Install **Expo Go** from the App Store
+2. Log in or sign up at [expo.dev](https://expo.dev)
+3. Find project `@sg0742/shabdavali-flashcards`
+4. Tap to open — no laptop needed
+
+### Option 3 — TestFlight (permanent iPhone install)
+Requires Apple Developer account ($99/year):
 ```bash
-# 1. Install Node.js from https://nodejs.org (LTS)
-# 2. Install Watchman (prevents file-watch errors on Mac)
-brew install watchman
+eas build --platform ios
+eas submit --platform ios
+```
 
-# 3. Enter project and install
+### Option 4 — Android APK (free, no account needed)
+```bash
+eas build --platform android --profile preview
+```
+
+---
+
+## 🛠 Developer Setup
+
+### Prerequisites
+- Node.js (LTS) — [nodejs.org](https://nodejs.org)
+- Watchman — `brew install watchman`
+
+### Run locally
+```bash
+git clone https://github.com/GoelSakshi742/shabdavali-app.git
 cd shabdavali-app
 npm install
-
-# 4. Run on your iPhone via Expo Go (free, no Apple account needed)
 npx expo start --clear
 ```
 
-Install **Expo Go** from the App Store → scan the QR code → app opens on your phone.
+Scan the QR code with **Expo Go** on your iPhone.
 
----
-
-## Upload to GitHub
-
+### Build web version
 ```bash
-cd shabdavali-app
-git init
-git branch -M main
-git add .
-git commit -m "Initial commit: Shabdavali flashcard app"
-git remote add origin https://github.com/GoelSakshi742/shabdavali-app.git
-git push -u origin main
-```
-
-Future updates:
-```bash
-git add .
-git commit -m "Describe your changes"
+npx expo export -p web
+mv dist docs
+git add docs/
+git commit -m "Update web build"
 git push
 ```
 
 ---
 
-## Get the App on Your iPhone — Free Options
+## ➕ Adding More Flashcards
 
-### Option 1: Expo Go (easiest, instant, free)
-- Run `npx expo start` on your Mac
-- Scan QR code with Expo Go app
-- Works as long as your Mac is on and on the same WiFi
-- Best for: daily practice while at home
+### In the app (no code needed)
+**Decks tab → Create new deck → Add cards**
 
-### Option 2: Expo Publish (free, no Mac needed after)
-```bash
-npx expo login       # create free account at expo.dev
-npx expo publish
-```
-- Get a permanent link like `exp://exp.host/@yourname/shabdavali`
-- Open in Expo Go from anywhere — no Mac running required
-- Best for: sharing with colleagues, using on the go
-
-### Option 3: EAS Build + TestFlight ($99/year Apple Developer account)
-```bash
-npm install -g eas-cli
-npx expo login
-eas build --platform ios
-eas submit --platform ios
-```
-- Fully installed app on your iPhone like any App Store app
-- No Expo Go needed, works offline
-- Best for: permanent personal use and sharing via TestFlight
-
-### Option 4: Android APK (free, no developer account)
-```bash
-eas build --platform android --profile preview
-```
-- Builds a `.apk` file you can install on any Android phone
-- Free, no Google Play account needed
-- Best for: Android users or sharing with colleagues
-
----
-
-## Adding More Flashcards
-
-### In the app (no code needed):
-Tap **Decks tab → Create new deck → Add cards**
-
-### In code (built-in decks):
-Edit `src/data/cards.js` and add to any array:
+### In code (built-in decks)
+Edit `src/data/cards.js`:
 
 ```js
 {
-  id: 'l21',              // unique ID — increment last number
+  id: 'l81',
   q: 'English Term',
   pa: 'ਪੰਜਾਬੀ (romanization)',
-  es: 'Spanish',          // optional
-  ar: 'العربية',          // optional
-  hi: 'हिन्दी',           // optional
-  fr: 'Français',         // optional
-  zh: '中文',             // optional
-  fa: 'دری',              // optional
-  ti: 'ትግርኛ',            // optional
-  m: 'English meaning/definition.',
+  es: 'Spanish',      // optional
+  ar: 'العربية',      // optional
+  hi: 'हिन्दी',       // optional
+  fr: 'Français',    // optional
+  zh: '中文',         // optional
+  fa: 'دری',         // optional
+  ti: 'ትግርኛ',        // optional
+  m: 'English definition.',
 },
 ```
 
-Then save the file — the app reloads automatically.
+Then push to GitHub — the web version updates automatically on next deploy.
 
 ---
 
-## Glossary Sources
-
-Terms sourced from:
-- **Canadian Legal Dictionary** — criminal, civil, family and property law
-- **CCHI Mini-Glossaries** — cchicertification.org/cchi-mini-glossaries (cardiovascular, respiratory, maternal)
-- **Abbotsford Family Medicine Punjabi Language Guide** — body parts, symptoms, common conditions
-- **IRB Terminology** — Immigration and Refugee Board of Canada
-- **Social Work Practice** — CASW/IFSW definitions
-
----
-
-## Project Structure
+## 🗂 Project Structure
 
 ```
 shabdavali-app/
-├── App.js                        ← Root navigator (tabs: Study, Decks, Settings)
-├── app.json                      ← Expo config
-├── package.json                  ← Dependencies
-├── babel.config.js
-├── eas.json                      ← EAS Build / TestFlight config
-├── ARCHITECTURE.md               ← Technical architecture document
+├── App.js                    ← Root navigator (Study · Decks · Settings tabs)
+├── app.json                  ← Expo config
+├── ARCHITECTURE.md           ← Technical architecture document
+├── docs/                     ← Built web app (served by GitHub Pages)
 └── src/
     ├── data/
-    │   └── cards.js              ← All built-in flashcards (80+ terms, 8 languages)
+    │   └── cards.js          ← All 280 built-in flashcards
     ├── hooks/
-    │   └── useStorage.js         ← AsyncStorage hooks (lang, decks, progress)
+    │   └── useStorage.js     ← AsyncStorage hooks (progress · decks · language)
     ├── screens/
-    │   ├── HomeScreen.js         ← Domain picker, language selector, progress bars
-    │   ├── QuizScreen.js         ← Flashcard / MCQ / Identify Term modes
-    │   ├── ResultsScreen.js      ← Score, accuracy, retry missed cards
-    │   ├── MyDecksScreen.js      ← List and manage custom decks
-    │   ├── CreateDeckScreen.js   ← Create new deck with name + colour
-    │   ├── AddCardScreen.js      ← Add / remove cards from a deck
-    │   └── SettingsScreen.js     ← Language switcher, stats, reset
+    │   ├── HomeScreen.js     ← Domain picker · language selector · progress bars
+    │   ├── QuizScreen.js     ← Flashcard / MCQ / Identify Term modes
+    │   ├── ResultsScreen.js  ← Score · accuracy · retry missed
+    │   ├── MyDecksScreen.js  ← List and manage custom decks
+    │   ├── CreateDeckScreen.js ← Create new deck with name + colour
+    │   ├── AddCardScreen.js  ← Add / remove cards from a deck
+    │   └── SettingsScreen.js ← Language · per-domain stats · reset
     └── utils/
-        └── theme.js              ← Colors, domain colors, language names
+        └── theme.js          ← Colors · domain colors · language names
 ```
+
+---
+
+## 🔄 Update Workflow
+
+After making changes:
+```bash
+# Save to GitHub
+git add .
+git commit -m "Describe your change"
+git push
+
+# Push live update to Expo (no Mac needed after this)
+eas update --branch main --message "Describe your change"
+
+# Rebuild web app
+npx expo export -p web && mv dist docs
+git add docs/ && git commit -m "Rebuild web" && git push
+```
+
+---
+
+## 📄 License
+
+Free to use for educational and community interpreting purposes.
+
+Built with ❤️ for the Calgary community interpreting community.
+
+---
+
+<p align="center">
+  <a href="https://goelsakshi742.github.io/shabdavali-app">🌐 Open Web App</a> ·
+  <a href="https://github.com/GoelSakshi742/shabdavali-app">📂 GitHub Repo</a> ·
+  <a href="https://expo.dev/@sg0742/shabdavali-flashcards">📱 Expo Project</a>
+</p>
