@@ -312,7 +312,7 @@ export const BUILT_IN_CARDS = {
     {id:'i36', q:'Abuse of Process',        pa:'ਪ੍ਰਕਿਰਿਆ ਦੀ ਦੁਰਵਰਤੋਂ (Prakriya di durvarton)', m:'Misusing the legal system for an unfair or malicious goal.'},
     {id:'i37', q:'Apprehension of Bias',    pa:'ਪੱਖਪਾਤ ਦਾ ਡਰ (Pakkhpaat da dar)',           m:'The reasonable fear that a judge is not neutral.'},
     {id:'i38', q:'Country of Origin',       pa:'ਮੂਲ ਦੇਸ਼ (Mool desh)',                      m:'The country from which a refugee claimant has fled.'},
-    {id:'i39', q:'Cessation',               pa:'ਸ਼ਰਨਾਰਥੀ ਦਰਜਾ ਖਤਮ (Sharnarthi darja khatam)', m:'Ending of refugee status when circumstances in country of origin have changed.'},
+    {id:'i39', q:'Cessartion',               pa:'ਸ਼ਰਨਾਰਥੀ ਦਰਜਾ ਖਤਮ (Sharnarthi darja khatam)', m:'Ending of refugee status when circumstances in country of origin have changed.'},
     {id:'i40', q:'Habeas Corpus (IRB)',      pa:'ਬੰਦੀ ਪ੍ਰਤੱਖੀਕਰਨ (Bandi Pratakkhi karan)',   m:'A challenge to determine if immigration detention or imprisonment is lawful.'},
   ],
 };

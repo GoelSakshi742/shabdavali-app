@@ -4,18 +4,39 @@
     "slug": "shabdavali-flashcards",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "web": {
-      "bundler": "metro",
-      "output": "single"
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      
+      "backgroundColor": "#0d0d0f"
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.sg0742.shabdavali",
+      "bundleIdentifier": "com.yourname.shabdavali",
       "buildNumber": "1"
     },
     "android": {
-      "package": "com.sg0742.shabdavali"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0d0d0f"
+      },
+      "package": "com.yourname.shabdavali"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e795c99a-66db-4b1d-9737-cc8a9da343e1"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e795c99a-66db-4b1d-9737-cc8a9da343e1"
     }
   }
 }
