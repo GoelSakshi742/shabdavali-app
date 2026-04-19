@@ -1,16 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, SafeAreaView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES, LANG_NAMES } from '../utils/theme';
 import { BUILT_IN_CARDS } from '../data/cards';
 import { useLang, useProgress, useCustomDecks } from '../hooks/useStorage';
 
 export default function HomeScreen({ navigation }) {
   const [lang, setLang] = useLang();
-  const { progress } = useProgress();
+  const [progress, setProgress] = useState({});
+
+  useFocusEffect(
+    useCallback(() => {
+      AsyncStorage.getItem('shabdavali_progress').then(raw => {
+        setProgress(raw ? JSON.parse(raw) : {});
+      }).catch(() => setProgress({}));
+    }, [])
+  );
   const { decks } = useCustomDecks();
   const [selectedDomain, setSelectedDomain] = useState('all');
 

@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '../utils/theme';
-import { useProgress } from '../hooks/useStorage';
+
+const PROGRESS_KEY = 'shabdavali_progress';
 
 export default function ResultsScreen({ route, navigation }) {
   const { score, total, lang, domain } = route.params;
-  const { updateProgress } = useProgress();
   const saved = useRef(false);
 
   const pct = total > 0 ? Math.round((score.right / total) * 100) : 0;
@@ -22,14 +23,36 @@ export default function ResultsScreen({ route, navigation }) {
   ];
   const circleColor = pct >= 80 ? COLORS.greenLight : pct >= 50 ? COLORS.accent : COLORS.red;
 
-  // Save progress when results screen mounts — only once
   useEffect(() => {
     if (saved.current) return;
     saved.current = true;
-    if (domain && total > 0) {
-      updateProgress(domain, score.right, total);
-    }
+    saveProgress();
   }, []);
+
+  async function saveProgress() {
+    if (!domain || total <= 0) return;
+    try {
+      // Read current progress fresh from storage
+      const raw = await AsyncStorage.getItem(PROGRESS_KEY);
+      const existing = raw ? JSON.parse(raw) : {};
+      const prev = existing[domain] || { correct: 0, total: 0 };
+
+      const updated = {
+        ...existing,
+        [domain]: {
+          correct:     prev.correct + score.right,
+          total:       prev.total + total,
+          lastStudied: new Date().toISOString(),
+        },
+      };
+
+      // Write back to storage
+      await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(updated));
+      console.log('✅ Progress saved for', domain, ':', updated[domain]);
+    } catch (e) {
+      console.log('❌ Progress save error:', e);
+    }
+  }
 
   return (
     <SafeAreaView style={s.safe}>
@@ -79,19 +102,19 @@ export default function ResultsScreen({ route, navigation }) {
 }
 
 const s = StyleSheet.create({
-  safe:     { flex: 1, backgroundColor: COLORS.bg },
-  scroll:   { padding: 24, alignItems: 'center' },
-  circle:   { width: 130, height: 130, borderRadius: 65, borderWidth: 3, alignItems: 'center', justifyContent: 'center', marginBottom: 20, marginTop: 20 },
-  pct:      { fontFamily: 'Georgia', fontSize: 34, fontWeight: '700', lineHeight: 38 },
-  pctLabel: { fontSize: 12, color: COLORS.muted },
-  title:    { fontSize: 22, fontFamily: 'Georgia', color: COLORS.text, fontWeight: '700', marginBottom: 6 },
-  sub:      { fontSize: 14, color: COLORS.muted, textAlign: 'center', lineHeight: 20, marginBottom: 28 },
-  statsGrid:{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, width: '100%', marginBottom: 24 },
-  statBox:  { width: '47%', backgroundColor: COLORS.bg2, borderRadius: 12, padding: 16, alignItems: 'center' },
-  statN:    { fontFamily: 'Georgia', fontSize: 24, fontWeight: '700', color: COLORS.text },
-  statL:    { fontSize: 11, color: COLORS.muted, marginTop: 4, textTransform: 'uppercase', letterSpacing: 0.5 },
-  retryBtn: { width: '100%', backgroundColor: COLORS.accent, borderRadius: 14, padding: 16, alignItems: 'center', marginBottom: 10 },
-  retryText:{ fontSize: 15, fontWeight: '500', color: COLORS.bg },
-  homeBtn:  { width: '100%', borderRadius: 14, padding: 14, alignItems: 'center', borderWidth: 0.5, borderColor: COLORS.border2 },
+  safe:        { flex: 1, backgroundColor: COLORS.bg },
+  scroll:      { padding: 24, alignItems: 'center' },
+  circle:      { width: 130, height: 130, borderRadius: 65, borderWidth: 3, alignItems: 'center', justifyContent: 'center', marginBottom: 20, marginTop: 20 },
+  pct:         { fontFamily: 'Georgia', fontSize: 34, fontWeight: '700', lineHeight: 38 },
+  pctLabel:    { fontSize: 12, color: COLORS.muted },
+  title:       { fontSize: 22, fontFamily: 'Georgia', color: COLORS.text, fontWeight: '700', marginBottom: 6 },
+  sub:         { fontSize: 14, color: COLORS.muted, textAlign: 'center', lineHeight: 20, marginBottom: 28 },
+  statsGrid:   { flexDirection: 'row', flexWrap: 'wrap', gap: 10, width: '100%', marginBottom: 24 },
+  statBox:     { width: '47%', backgroundColor: COLORS.bg2, borderRadius: 12, padding: 16, alignItems: 'center' },
+  statN:       { fontFamily: 'Georgia', fontSize: 24, fontWeight: '700', color: COLORS.text },
+  statL:       { fontSize: 11, color: COLORS.muted, marginTop: 4, textTransform: 'uppercase', letterSpacing: 0.5 },
+  retryBtn:    { width: '100%', backgroundColor: COLORS.accent, borderRadius: 14, padding: 16, alignItems: 'center', marginBottom: 10 },
+  retryText:   { fontSize: 15, fontWeight: '500', color: COLORS.bg },
+  homeBtn:     { width: '100%', borderRadius: 14, padding: 14, alignItems: 'center', borderWidth: 0.5, borderColor: COLORS.border2 },
   homeBtnText: { fontSize: 14, color: COLORS.muted },
 });

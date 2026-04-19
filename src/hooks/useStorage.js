@@ -1,102 +1,125 @@
 import { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const KEYS = {
-  LANG:        'shabdavali_lang',
-  CUSTOM_DECKS:'shabdavali_custom_decks',
-  PROGRESS:    'shabdavali_progress',
-  SETTINGS:    'shabdavali_settings',
-};
+const PROGRESS_KEY = 'shabdavali_progress';
+const LANG_KEY     = 'shabdavali_lang';
+const DECKS_KEY    = 'shabdavali_custom_decks';
 
+// ── Language ──────────────────────────────────────────────────────────────
 export function useLang() {
   const [lang, setLangState] = useState('pa');
 
   useEffect(() => {
-    AsyncStorage.getItem(KEYS.LANG).then(v => { if (v) setLangState(v); });
+    AsyncStorage.getItem(LANG_KEY).then(v => { if (v) setLangState(v); });
   }, []);
 
   const setLang = useCallback(async (l) => {
     setLangState(l);
-    await AsyncStorage.setItem(KEYS.LANG, l);
+    await AsyncStorage.setItem(LANG_KEY, l);
   }, []);
 
   return [lang, setLang];
 }
 
+// ── Custom Decks ──────────────────────────────────────────────────────────
 export function useCustomDecks() {
   const [decks, setDecksState] = useState([]);
 
   useEffect(() => {
-    AsyncStorage.getItem(KEYS.CUSTOM_DECKS).then(v => {
+    AsyncStorage.getItem(DECKS_KEY).then(v => {
       if (v) setDecksState(JSON.parse(v));
     });
   }, []);
 
   const saveDecks = useCallback(async (newDecks) => {
     setDecksState(newDecks);
-    await AsyncStorage.setItem(KEYS.CUSTOM_DECKS, JSON.stringify(newDecks));
+    await AsyncStorage.setItem(DECKS_KEY, JSON.stringify(newDecks));
   }, []);
 
   const addDeck = useCallback(async (deck) => {
-    const updated = [...decks, deck];
+    const current = await AsyncStorage.getItem(DECKS_KEY);
+    const existing = current ? JSON.parse(current) : [];
+    const updated = [...existing, deck];
     await saveDecks(updated);
-  }, [decks, saveDecks]);
-
-  const updateDeck = useCallback(async (id, updates) => {
-    const updated = decks.map(d => d.id === id ? { ...d, ...updates } : d);
-    await saveDecks(updated);
-  }, [decks, saveDecks]);
+  }, [saveDecks]);
 
   const deleteDeck = useCallback(async (id) => {
-    const updated = decks.filter(d => d.id !== id);
-    await saveDecks(updated);
-  }, [decks, saveDecks]);
+    const current = await AsyncStorage.getItem(DECKS_KEY);
+    const existing = current ? JSON.parse(current) : [];
+    await saveDecks(existing.filter(d => d.id !== id));
+  }, [saveDecks]);
 
   const addCardToDeck = useCallback(async (deckId, card) => {
-    const updated = decks.map(d => {
-      if (d.id !== deckId) return d;
-      return { ...d, cards: [...(d.cards || []), card] };
-    });
+    const current = await AsyncStorage.getItem(DECKS_KEY);
+    const existing = current ? JSON.parse(current) : [];
+    const updated = existing.map(d =>
+      d.id === deckId ? { ...d, cards: [...(d.cards || []), card] } : d
+    );
     await saveDecks(updated);
-  }, [decks, saveDecks]);
+  }, [saveDecks]);
 
   const removeCardFromDeck = useCallback(async (deckId, cardId) => {
-    const updated = decks.map(d => {
-      if (d.id !== deckId) return d;
-      return { ...d, cards: d.cards.filter(c => c.id !== cardId) };
-    });
+    const current = await AsyncStorage.getItem(DECKS_KEY);
+    const existing = current ? JSON.parse(current) : [];
+    const updated = existing.map(d =>
+      d.id === deckId ? { ...d, cards: d.cards.filter(c => c.id !== cardId) } : d
+    );
     await saveDecks(updated);
-  }, [decks, saveDecks]);
+  }, [saveDecks]);
 
-  return { decks, addDeck, updateDeck, deleteDeck, addCardToDeck, removeCardFromDeck };
+  return { decks, addDeck, deleteDeck, addCardToDeck, removeCardFromDeck };
 }
 
+// ── Progress ──────────────────────────────────────────────────────────────
 export function useProgress() {
-  const [progress, setProgressState] = useState({});
+  const [progress, setProgress] = useState({});
+
+  const loadProgress = useCallback(async () => {
+    try {
+      const raw = await AsyncStorage.getItem(PROGRESS_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      setProgress(parsed);
+      return parsed;
+    } catch (e) {
+      console.log('loadProgress error', e);
+      return {};
+    }
+  }, []);
 
   useEffect(() => {
-    AsyncStorage.getItem(KEYS.PROGRESS).then(v => {
-      if (v) setProgressState(JSON.parse(v));
-    });
+    loadProgress();
   }, []);
 
+  // Always reads fresh from AsyncStorage — no stale state problem
   const updateProgress = useCallback(async (domain, correct, total) => {
-    const updated = {
-      ...progress,
-      [domain]: {
-        correct: (progress[domain]?.correct || 0) + correct,
-        total:   (progress[domain]?.total   || 0) + total,
-        lastStudied: new Date().toISOString(),
-      }
-    };
-    setProgressState(updated);
-    await AsyncStorage.setItem(KEYS.PROGRESS, JSON.stringify(updated));
-  }, [progress]);
+    try {
+      const raw = await AsyncStorage.getItem(PROGRESS_KEY);
+      const existing = raw ? JSON.parse(raw) : {};
+      const prev = existing[domain] || { correct: 0, total: 0 };
+      const updated = {
+        ...existing,
+        [domain]: {
+          correct:     prev.correct + correct,
+          total:       prev.total + total,
+          lastStudied: new Date().toISOString(),
+        },
+      };
+      await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(updated));
+      setProgress(updated);
+      console.log('Progress saved:', updated[domain]);
+    } catch (e) {
+      console.log('updateProgress error', e);
+    }
+  }, []);
 
   const resetProgress = useCallback(async () => {
-    setProgressState({});
-    await AsyncStorage.removeItem(KEYS.PROGRESS);
+    try {
+      await AsyncStorage.removeItem(PROGRESS_KEY);
+      setProgress({});
+    } catch (e) {
+      console.log('resetProgress error', e);
+    }
   }, []);
 
-  return { progress, updateProgress, resetProgress };
+  return { progress, updateProgress, resetProgress, loadProgress };
 }

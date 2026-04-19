@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
   SafeAreaView, ScrollView, Alert,
@@ -6,6 +6,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, LANG_NAMES, DOMAIN_NAMES, DOMAIN_COLORS } from '../utils/theme';
 import { useLang, useProgress } from '../hooks/useStorage';
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BUILT_IN_CARDS } from '../data/cards';
 
 function Row({ icon, label, value, onPress, destructive }) {
@@ -21,7 +23,16 @@ function Row({ icon, label, value, onPress, destructive }) {
 
 export default function SettingsScreen() {
   const [lang, setLang] = useLang();
-  const { progress, resetProgress } = useProgress();
+  const { resetProgress } = useProgress();
+  const [progress, setProgress] = useState({});
+
+  useFocusEffect(
+    useCallback(() => {
+      AsyncStorage.getItem('shabdavali_progress').then(raw => {
+        setProgress(raw ? JSON.parse(raw) : {});
+      }).catch(() => setProgress({}));
+    }, [])
+  );
 
   const builtInDomains = ['legal', 'social', 'medical', 'irb'];
 

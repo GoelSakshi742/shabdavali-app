@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES } from '../utils/theme';
 import { BUILT_IN_CARDS } from '../data/cards';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MODES = ['flash', 'mcq', 'type'];
 const MODE_LABELS = { flash: 'Flashcards', mcq: 'Multiple Choice', type: 'Identify Term' };
@@ -49,8 +50,28 @@ export default function QuizScreen({ route, navigation }) {
   const pct = Math.round((idx / cards.length) * 100);
   const correct = card[lang] || card.pa;
 
-  function advance(newScore) {
+  async function saveCardResult(isRight) {
+    try {
+      const raw = await AsyncStorage.getItem('shabdavali_progress');
+      const existing = raw ? JSON.parse(raw) : {};
+      const prev = existing[domain] || { correct: 0, total: 0 };
+      const updated = {
+        ...existing,
+        [domain]: {
+          correct: prev.correct + (isRight ? 1 : 0),
+          total: prev.total + 1,
+          lastStudied: new Date().toISOString(),
+        },
+      };
+      await AsyncStorage.setItem('shabdavali_progress', JSON.stringify(updated));
+    } catch (e) {
+      console.log('save error', e);
+    }
+  }
+
+  function advance(newScore, isRight) {
     setScore(newScore);
+    saveCardResult(isRight);
     if (idx + 1 >= cards.length) {
       navigation.replace('Results', { score: newScore, total: cards.length, lang, domain });
     } else {
@@ -65,12 +86,12 @@ export default function QuizScreen({ route, navigation }) {
 
   function markRight() {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    advance({ ...score, right: score.right + 1 });
+    advance({ ...score, right: score.right + 1 }, true);
   }
 
   function markWrong() {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-    advance({ ...score, wrong: score.wrong + 1, wrongCards: [...score.wrongCards, card] });
+    advance({ ...score, wrong: score.wrong + 1, wrongCards: [...score.wrongCards, card] }, false);
   }
 
   function answerMCQ(opt) {
@@ -79,6 +100,7 @@ export default function QuizScreen({ route, navigation }) {
     setSelected(opt);
     const isRight = opt === correct;
     Haptics.notificationAsync(isRight ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Warning);
+    saveCardResult(isRight);
     if (isRight) setScore(s => ({ ...s, right: s.right + 1 }));
     else setScore(s => ({ ...s, wrong: s.wrong + 1, wrongCards: [...s.wrongCards, card] }));
   }
@@ -94,6 +116,7 @@ export default function QuizScreen({ route, navigation }) {
     const ok = val.length > 1 && (ans.includes(val) || val.includes(ans.split(' ')[0]));
     setTypeResult(ok ? 'right' : 'wrong');
     Haptics.notificationAsync(ok ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Warning);
+    saveCardResult(ok);
     if (ok) setScore(s => ({ ...s, right: s.right + 1 }));
     else setScore(s => ({ ...s, wrong: s.wrong + 1, wrongCards: [...s.wrongCards, card] }));
     setTimeout(() => {
