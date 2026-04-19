@@ -4,8 +4,8 @@ import {
   SafeAreaView, ScrollView, Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, LANG_NAMES, DOMAIN_NAMES, DOMAIN_COLORS } from '../utils/theme';
-import { useLang, useProgress } from '../hooks/useStorage';
+import { COLORS, DOMAIN_NAMES, DOMAIN_COLORS } from '../utils/theme';
+import { useProgress } from '../hooks/useStorage';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BUILT_IN_CARDS } from '../data/cards';
@@ -22,7 +22,6 @@ function Row({ icon, label, value, onPress, destructive }) {
 }
 
 export default function SettingsScreen() {
-  const [lang, setLang] = useLang();
   const { resetProgress } = useProgress();
   const [progress, setProgress] = useState({});
 
@@ -105,18 +104,7 @@ export default function SettingsScreen() {
           })}
         </View>
 
-        {/* Language */}
-        <Text style={s.sectionLabel}>Quiz language</Text>
-        <View style={s.section}>
-          {Object.entries(LANG_NAMES).map(([k, v]) => (
-            <TouchableOpacity key={k} style={s.langRow} onPress={() => setLang(k)}>
-              <Text style={s.langName}>{v}</Text>
-              {lang === k && (
-                <Ionicons name="checkmark-circle" size={20} color={COLORS.accent} />
-              )}
-            </TouchableOpacity>
-          ))}
-        </View>
+
 
         {/* About */}
         <Text style={s.sectionLabel}>About</Text>
@@ -164,8 +152,6 @@ const s = StyleSheet.create({
   row:        { flexDirection: 'row', alignItems: 'center', padding: 14, borderBottomWidth: 0.5, borderBottomColor: COLORS.border },
   rowLabel:   { flex: 1, fontSize: 14, color: COLORS.text, marginLeft: 4 },
   rowValue:   { fontSize: 13, color: COLORS.muted, marginRight: 6 },
-  langRow:    { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 14, borderBottomWidth: 0.5, borderBottomColor: COLORS.border },
-  langName:   { fontSize: 15, color: COLORS.text },
   footer:     { alignItems: 'center', paddingTop: 20, paddingBottom: 12 },
   footerText: { fontSize: 13, color: COLORS.muted },
   footerSub:  { fontSize: 11, color: COLORS.bg3, marginTop: 4 },

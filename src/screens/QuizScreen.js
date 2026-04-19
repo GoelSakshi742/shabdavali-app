@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
-import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES, LANG_NAMES } from '../utils/theme';
+import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES } from '../utils/theme';
 import { BUILT_IN_CARDS } from '../data/cards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,7 +14,7 @@ const MODE_LABELS = { flash: 'Flashcards', mcq: 'Multiple Choice', type: 'Identi
 
 function buildMCQOptions(card, lang) {
   const allCards = Object.values(BUILT_IN_CARDS).flat();
-  const correct = card[lang] || card.pa;
+  const correct = card.pa;
   const pool = allCards.filter(c => {
     const val = c[lang] || c.pa;
     return c.id !== card.id && val && val.trim() !== '' && val !== correct;
@@ -25,7 +25,8 @@ function buildMCQOptions(card, lang) {
 }
 
 export default function QuizScreen({ route, navigation }) {
-  const { cards: initCards, lang, domain } = route.params;
+  const { cards: initCards, domain } = route.params;
+  const lang = 'pa';
   const [cards] = useState(initCards);
   const [idx, setIdx] = useState(0);
   const [mode, setMode] = useState('flash');
@@ -40,15 +41,15 @@ export default function QuizScreen({ route, navigation }) {
   const card = cards[idx];
 
   useEffect(() => {
-    if (card) setMcqOpts(buildMCQOptions(card, lang));
+    if (card) setMcqOpts(buildMCQOptions(card, 'pa'));
   }, [idx, mode]);
 
   if (!card) return null;
 
   const domainColor = DOMAIN_COLORS[card.domain] || COLORS.accent;
-  const tr = card[lang] || card.pa || '';
+  const tr = card.pa || '';
   const pct = Math.round((idx / cards.length) * 100);
-  const correct = card[lang] || card.pa;
+  const correct = card.pa;
 
   async function saveCardResult(isRight) {
     try {
@@ -163,9 +164,8 @@ export default function QuizScreen({ route, navigation }) {
                 <Text style={s.hint}>Tap to reveal</Text>
               ) : (
                 <View style={s.ansBox}>
-                  <Text style={s.ansLabel}>{lang === 'pa' ? 'ਪੰਜਾਬੀ' : LANG_NAMES[lang] || 'ਪੰਜਾਬੀ'}</Text>
-                  <Text style={s.ansPa}>{tr || card.pa}</Text>
-                  {lang !== 'pa' && card.pa && <Text style={s.ansLang}>{card.pa}</Text>}
+                  <Text style={s.ansLabel}>ਪੰਜਾਬੀ</Text>
+                  <Text style={s.ansPa}>{card.pa}</Text>
                   <View style={s.div} />
                   <Text style={s.ansM}>{card.m}</Text>
                 </View>
@@ -190,7 +190,7 @@ export default function QuizScreen({ route, navigation }) {
         {mode === 'mcq' && (
           <>
             <View style={[s.card, { borderTopColor: domainColor }]}>
-              <Text style={s.hint}>What is the {lang === 'pa' ? 'Punjabi' : (LANG_NAMES[lang] || 'Punjabi')} translation of:</Text>
+              <Text style={s.hint}>What is the Punjabi translation of:</Text>
               <Text style={s.cardQ}>{card.q}</Text>
             </View>
             <View style={s.mcqOpts}>
@@ -225,8 +225,7 @@ export default function QuizScreen({ route, navigation }) {
           <>
             <View style={[s.card, { borderTopColor: domainColor }]}>
               <Text style={s.hint}>What English term matches this?</Text>
-              <Text style={[s.ansPa, { fontSize: 20, marginBottom: 6 }]}>{tr || card.pa}</Text>
-              {lang !== 'pa' && card.pa && <Text style={s.ansLang}>{card.pa}</Text>}
+              <Text style={[s.ansPa, { fontSize: 20, marginBottom: 6 }]}>{card.pa}</Text>
               <View style={s.div} />
               <Text style={s.ansM}>{card.m}</Text>
             </View>
