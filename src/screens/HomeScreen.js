@@ -6,22 +6,12 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES, LANG_NAMES } from '../utils/theme';
+import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES } from '../utils/theme';
 import { BUILT_IN_CARDS } from '../data/cards';
-import { useLang, useProgress, useCustomDecks } from '../hooks/useStorage';
+import { useProgress, useCustomDecks } from '../hooks/useStorage';
 
 export default function HomeScreen({ navigation }) {
-  const [lang, setLang] = useLang();
-
-  // Re-read lang every time screen comes into focus
-  // (in case it was changed in Settings)
-  useFocusEffect(
-    useCallback(() => {
-      AsyncStorage.getItem('shabdavali_lang').then(v => {
-        if (v) setLang(v);
-      });
-    }, [])
-  );
+  const lang = 'pa'; // Fixed to Punjabi
   const [progress, setProgress] = useState({});
 
   useFocusEffect(
@@ -46,9 +36,8 @@ export default function HomeScreen({ navigation }) {
     return Math.min(100, Math.round((p.correct / total) * 100));
   };
 
-  async function startQuiz(domain, deckId) {
-    // Always read lang fresh from storage to avoid stale state
-    const freshLang = (await AsyncStorage.getItem('shabdavali_lang')) || lang || 'pa';
+  function startQuiz(domain, deckId) {
+    const freshLang = 'pa';
     let cards = [];
     if (domain === 'all') {
       cards = builtInDomains.flatMap(d => BUILT_IN_CARDS[d].map(c => ({ ...c, domain: d })));
@@ -80,16 +69,7 @@ export default function HomeScreen({ navigation }) {
           <View style={s.statCard}><Text style={s.statN}>{decks.length}</Text><Text style={s.statL}>My Decks</Text></View>
         </View>
 
-        {/* Language picker */}
-        <Text style={s.sectionLabel}>Quiz language</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.langScroll} contentContainerStyle={s.langRow}>
-          {Object.entries(LANG_NAMES).map(([k,v]) => (
-            <TouchableOpacity key={k} onPress={() => setLang(k)}
-              style={[s.langPill, lang===k && s.langPillActive]}>
-              <Text style={[s.langPillText, lang===k && s.langPillTextActive]}>{v}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+
 
         {/* Built-in domains */}
         <Text style={s.sectionLabel}>Built-in domains</Text>
@@ -158,12 +138,6 @@ const s = StyleSheet.create({
   statN:       { fontFamily: 'Georgia', fontSize: 22, color: COLORS.text, fontWeight: '700' },
   statL:       { fontSize: 11, color: COLORS.muted, marginTop: 3, textTransform: 'uppercase', letterSpacing: 0.5 },
   sectionLabel:{ fontSize: 11, color: COLORS.muted, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10, marginTop: 4 },
-  langScroll:  { marginBottom: 20, marginHorizontal: -18 },
-  langRow:     { paddingHorizontal: 18, gap: 8 },
-  langPill:    { paddingHorizontal: 14, paddingVertical: 7, borderRadius: 100, borderWidth: 1, borderColor: 'rgba(201,168,76,0.30)', backgroundColor: 'rgba(201,168,76,0.18)' },
-  langPillActive: { backgroundColor: COLORS.accent, borderColor: COLORS.accent },
-  langPillText:   { fontSize: 13, color: COLORS.accent },
-  langPillTextActive: { color: COLORS.bg, fontWeight: '500' },
   domainGrid:  { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16 },
   domainCard:  { width: '47.5%', backgroundColor: COLORS.bg2, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: COLORS.border },
   domainBar:   { height: 4, borderRadius: 2, marginBottom: 12, overflow: 'hidden' },
