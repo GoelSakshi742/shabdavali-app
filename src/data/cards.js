@@ -1,0 +1,116 @@
+export const BUILT_IN_CARDS = {
+  legal: [
+    {id:'l1',q:'Absolute Discharge',pa:'ਪੂਰਨ ਮੁਕਤੀ (Puran mukti)',es:'Absolución Absoluta',ar:'إخلاء سبيل مطلق',hi:'पूर्ण मुक्ति',fr:'Libération Absolue',zh:'绝对释放',fa:'آزادی مطلق',ti:'ፍጹም ምፍታሕ',m:'Offender found guilty but deemed not convicted; federal record still exists.'},
+    {id:'l2',q:'Acquittal',pa:'ਬਰੀ ਹੋਣਾ (Bari hona)',es:'Absolución',ar:'تبرئة',hi:'दोषमुक्ति',fr:'Acquittement',zh:'无罪释放',fa:'برائت',ti:'ምፍታሕ',m:'Finding of not guilty in a criminal case.'},
+    {id:'l3',q:'Bail',pa:'ਜ਼ਮਾਨਤ (Zamanat)',es:'Fianza',ar:'كفالة',hi:'जमानत',fr:'Cautionnement',zh:'保释',fa:'وثیقه',ti:'ዋሕስ',m:'Monetary or other security to ensure accused\'s appearance at trial.'},
+    {id:'l4',q:'Mens Rea',pa:'ਅਪਰਾਧਿਕ ਇਰਾਦਾ (Apradhik iraada)',es:'Intención Criminal',ar:'النية الجرمية',hi:'अपराधिक इरादा',fr:'Intention Criminelle',zh:'犯罪意图',fa:'قصد مجرمانه',ti:'ናይ ወንጀል ሓሳብ',m:'Criminal intent — the mental element of an offence. See also Actus Reus.'},
+    {id:'l5',q:'Habeas Corpus',pa:'ਹੇਬੀਅਸ ਕਾਰਪਸ',es:'Hábeas Corpus',ar:'أمر المثول أمام القضاء',hi:'बंदी प्रत्यक्षीकरण',fr:'Habeas Corpus',zh:'人身保护令',fa:'دستور احضار',ti:'Habeas Corpus',m:'Court order to bring detained person before court to determine if custody is legal.'},
+    {id:'l6',q:'Presumption of Innocence',pa:'ਬੇਗੁਨਾਹੀ ਦੀ ਧਾਰਨਾ (Begunaahi di dharna)',es:'Presunción de Inocencia',ar:'قرينة البراءة',hi:'निर्दोषता की धारणा',fr:'Présomption d\'Innocence',zh:'无罪推定',fa:'اصل برائت',ti:'ንጽህና ምስምዓቕ',m:'Under the Charter, charged person has right to be presumed innocent until proved guilty.'},
+    {id:'l7',q:'Subpoena',pa:'ਅਦਾਲਤੀ ਸੰਮਨ (Adaalti samman)',es:'Citación Judicial',ar:'استدعاء قضائي',hi:'समन',fr:'Citation à Comparaître',zh:'传票',fa:'احضاریه',ti:'ናይ ፍርዲ-ቤት ጸውዒ',m:'Written order commanding person to come to court as witness with documents.'},
+    {id:'l8',q:'Parole',pa:'ਪੈਰੋਲ (Parole)',es:'Libertad Condicional',ar:'الإفراج المشروط',hi:'पैरोल',fr:'Liberté Conditionnelle',zh:'假释',fa:'آزادی مشروط',ti:'ምፍታሕ ብቃልሲ',m:'Release from prison before end of sentence; supervised with conditions.'},
+    {id:'l9',q:'Crown Attorney',pa:'ਕ੍ਰਾਊਨ ਵਕੀਲ (Crown vakeel)',es:'Fiscal de la Corona',ar:'محامي الادعاء',hi:'सरकारी वकील',fr:'Procureur de la Couronne',zh:'检察官',fa:'دادستان',ti:'ጠበቓ ዘውዲ',m:'Lawyer representing the Crown in a criminal prosecution.'},
+    {id:'l10',q:'Contempt of Court',pa:'ਅਦਾਲਤ ਦੀ ਬੇਅਦਬੀ (Adaalat di beadabi)',es:'Desacato al Tribunal',ar:'ازدراء المحكمة',hi:'अवमानना',fr:'Outrage au Tribunal',zh:'藐视法庭',fa:'توهین به دادگاه',ti:'ናዕቢ ፍርዲ-ቤት',m:'Criminal offence involving interfering with justice or defying a judge.'},
+    {id:'l11',q:'Tort',pa:'ਨਾਗਰਿਕ ਬੇਇਨਸਾਫ਼ੀ (Naagrik be-insaafi)',es:'Agravio Civil',ar:'ضرر مدني',hi:'नागरिक अन्याय',fr:'Délit Civil',zh:'侵权行为',fa:'ضرر مدنی',ti:'ሲቪል ገበን',m:'Civil action from wrongful act; plaintiff may sue for damages.'},
+    {id:'l12',q:'Stare Decisis',pa:'ਪਿਛਲੇ ਫੈਸਲਿਆਂ ਦੀ ਪਾਲਣਾ',es:'Precedente Judicial',ar:'مبدأ الالتزام بالسوابق',hi:'न्यायिक मिसाल',fr:'Précédent Judiciaire',zh:'遵循先例',fa:'تبعیت از سوابق',ti:'ናይ ቀዳሞ ፍርዲ ምኽባር',m:'Following previous court decisions as precedent when making a judgment.'},
+    {id:'l13',q:'Plea-Bargaining',pa:'ਦਲੀਲਬਾਜ਼ੀ ਸਮਝੌਤਾ (Daleelbazi samjhauta)',es:'Negociación de Cargos',ar:'التفاوض على الاعتراف',hi:'दोष-वार्ता',fr:'Négociation de Plaidoyer',zh:'辩诉交易',fa:'مذاکره اعتراف',ti:'ምምኻር ናይ ሕቶ',m:'Negotiations between defence counsel and Crown about charges and pleas.'},
+    {id:'l14',q:'Legal Aid',pa:'ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ (Kaanooni sahaayata)',es:'Asistencia Jurídica',ar:'المساعدة القانونية',hi:'कानूनी सहायता',fr:'Aide Juridique',zh:'法律援助',fa:'کمک حقوقی',ti:'ሕጋዊ ሓገዝ',m:'Program assisting those who require a lawyer but cannot afford one.'},
+    {id:'l15',q:'Probation',pa:'ਪ੍ਰੋਬੇਸ਼ਨ (Probation)',es:'Libertad Vigilada',ar:'المراقبة القضائية',hi:'परिवीक्षा',fr:'Probation',zh:'缓刑',fa:'تعلیق مجازات',ti:'ክትትል ምፍታሕ',m:'Sentence requiring offender to obey stipulated conditions; max three years.'},
+    {id:'l16',q:'Mistrial',pa:'ਅਸਫਲ ਮੁਕੱਦਮਾ (Asafal muqaddama)',es:'Juicio Nulo',ar:'محاكمة باطلة',hi:'विफल मुकदमा',fr:'Procès Nul',zh:'无效审判',fa:'محاکمه ناقص',ti:'ዘይሰርሕ ክሲ',m:'Judge ends trial when fair verdict cannot be obtained; may order retrial.'},
+    {id:'l17',q:'Will / Testament',pa:'ਵਸੀਅਤ (Vasiyat)',es:'Testamento',ar:'وصية',hi:'वसीयत',fr:'Testament',zh:'遗嘱',fa:'وصیت‌نامه',ti:'ኑዛዜ',m:'Legal document stating who receives your property upon death.'},
+    {id:'l18',q:'Adjournment',pa:'ਮੁਲਤਵੀ (Multavi)',es:'Aplazamiento',ar:'تأجيل',hi:'स्थगन',fr:'Ajournement',zh:'延期',fa:'تعویق',ti:'ምምሕዳር',m:'Postponement or continuance of a case to another date.'},
+    {id:'l19',q:'Affidavit',pa:'ਸਹੁੰਚੁੱਕਿਆ ਬਿਆਨ (Sahunn-chukkiya biaan)',es:'Declaración Jurada',ar:'إفادة محلوف عليها',hi:'शपथपत्र',fr:'Affidavit',zh:'宣誓书',fa:'اظهارنامه سوگندی',ti:'ምእማን ጸሓፍ',m:'A sworn written declaration that certain facts are true.'},
+    {id:'l20',q:'Power of Attorney',pa:'ਮੁਖ਼ਤਾਰਨਾਮਾ (Mukhtaarnaama)',es:'Poder Notarial',ar:'وكالة قانونية',hi:'पावर ऑफ अटॉर्नी',fr:'Procuration',zh:'授权书',fa:'وکالت‌نامه',ti:'ናይ ሕጊ ወኪሊ',m:'Legal document authorizing another person to act on your behalf.'},
+  ],
+
+  social: [
+    {id:'s1',q:'Advocacy',pa:'ਵਕਾਲਤ (Vakaalat)',es:'Abogacía',ar:'المناصرة',hi:'वकालत',fr:'Défense des Droits',zh:'倡导',fa:'حمایت',ti:'ምክልኻል',m:'Acting on a client\'s behalf to obtain needed resources and services.'},
+    {id:'s2',q:'Empathy',pa:'ਹਮਦਰਦੀ (Hamdardi)',es:'Empatía',ar:'التعاطف',hi:'सहानुभूति',fr:'Empathie',zh:'同理心',fa:'همدلی',ti:'ርኽቢ ስምዒት',m:'The ability to see things from another\'s point of view.'},
+    {id:'s3',q:'Empowerment',pa:'ਸ਼ਕਤੀਕਰਨ (Shaktikaran)',es:'Empoderamiento',ar:'التمكين',hi:'सशक्तिकरण',fr:'Autonomisation',zh:'赋权',fa:'توانمندسازی',ti:'ሓይሊ ምሃብ',m:'Sense that people can create and take action to meet their own needs.'},
+    {id:'s4',q:'Discrimination',pa:'ਵਿਤਕਰਾ (Vitkara)',es:'Discriminación',ar:'التمييز',hi:'भेदभाव',fr:'Discrimination',zh:'歧视',fa:'تبعیض',ti:'ኣድልዎ',m:'Unequal treatment based on age, sex, ethnic or physical identity.'},
+    {id:'s5',q:'Cultural Competency',pa:'ਸੱਭਿਆਚਾਰਕ ਯੋਗਤਾ (Sabhiyaacharak yogtaa)',es:'Competencia Cultural',ar:'الكفاءة الثقافية',hi:'सांस्कृतिक दक्षता',fr:'Compétence Culturelle',zh:'文化能力',fa:'شایستگی فرهنگی',ti:'ባህላዊ ብቕዓት',m:'Ability to acknowledge different perceptions and incorporate them into practice.'},
+    {id:'s6',q:'Burnout',pa:'ਮਾਨਸਿਕ ਥਕਾਵਟ (Maansik thkaavat)',es:'Agotamiento Laboral',ar:'الإرهاق الوظيفي',hi:'बर्नआउट',fr:'Épuisement Professionnel',zh:'职业倦怠',fa:'فرسودگی شغلی',ti:'ሙሉእ ደኻም',m:'Condition of mental and physical exhaustion through overwork.'},
+    {id:'s7',q:'Trauma',pa:'ਮਾਨਸਿਕ ਸੱਟ (Maansik satt)',es:'Trauma',ar:'صدمة نفسية',hi:'आघात',fr:'Traumatisme',zh:'创伤',fa:'تروما',ti:'ስቃይ',m:'Deep psychological wound from a distressing or life-threatening event.'},
+    {id:'s8',q:'Child Abuse',pa:'ਬੱਚੇ ਨਾਲ ਦੁਰਵਿਵਹਾਰ (Bachche naal durvivhaar)',es:'Maltrato Infantil',ar:'إساءة معاملة الأطفال',hi:'बाल दुर्व्यवहार',fr:'Maltraitance Infantile',zh:'虐待儿童',fa:'آزار کودکان',ti:'ህጻናት ምጉዳእ',m:'Physical, psychological and emotional maltreatment endangering a child.'},
+    {id:'s9',q:'Attachment',pa:'ਲਗਾਅ (Lagaav)',es:'Apego',ar:'التعلق',hi:'लगाव',fr:'Attachement',zh:'依恋',fa:'دلبستگی',ti:'ምትእስሳር',m:'Strong emotional relationship between an infant and a caregiver.'},
+    {id:'s10',q:'Foster Care',pa:'ਪਾਲਕ ਦੇਖਭਾਲ (Paalak dekhbhal)',es:'Cuidado de Crianza',ar:'رعاية الأسرة البديلة',hi:'पालक देखभाल',fr:'Famille d\'Accueil',zh:'寄养照护',fa:'مراقبت خانوادگی',ti:'ናይ ሓለዋ ክንክን',m:'Interim care for children whose parents cannot currently provide it.'},
+    {id:'s11',q:'Ageism',pa:'ਬੁਢਾਪਾ ਵਿਤਕਰਾ (Budhapa vitkara)',es:'Edadismo',ar:'التمييز بسبب السن',hi:'आयुवाद',fr:'Âgisme',zh:'年龄歧视',fa:'سن‌گرایی',ti:'ኣድልዎ ዕድሜ',m:'Discrimination and prejudice against elderly people.'},
+    {id:'s12',q:'Community',pa:'ਭਾਈਚਾਰਾ (Bhaichaara)',es:'Comunidad',ar:'المجتمع',hi:'समुदाय',fr:'Communauté',zh:'社区',fa:'جامعه',ti:'ማሕበረሰብ',m:'Group of people with common ties, interests or living in the same area.'},
+    {id:'s13',q:'Assessment',pa:'ਮੁਲਾਂਕਣ (Mulankhan)',es:'Evaluación',ar:'التقييم',hi:'मूल्यांकन',fr:'Évaluation',zh:'评估',fa:'ارزیابی',ti:'ምግምጋም',m:'Process of developing understanding of the presenting problem and plan of action.'},
+    {id:'s14',q:'Feminism',pa:'ਨਾਰੀਵਾਦ (Naarivad)',es:'Feminismo',ar:'النسوية',hi:'नारीवाद',fr:'Féminisme',zh:'女权主义',fa:'فمینیسم',ti:'ናይ ደቂ-ኣንስትዮ ምንቅስቓስ',m:'Belief that society systematically deprives women of choice, power and recognition.'},
+    {id:'s15',q:'Extended Family',pa:'ਸਾਂਝਾ ਪਰਿਵਾਰ (Saanjha parivaaar)',es:'Familia Extendida',ar:'الأسرة الممتدة',hi:'संयुक्त परिवार',fr:'Famille Élargie',zh:'大家庭',fa:'خانواده گسترده',ti:'ዝርጉሕ ስድራቤት',m:'Family including parents, children, grandparents and other relations.'},
+    {id:'s16',q:'Ethnocentrism',pa:'ਕੌਮ-ਕੇਂਦਰਵਾਦ (Qaum-kendravaad)',es:'Etnocentrismo',ar:'التمركز العرقي',hi:'नृजातिकेंद्रवाद',fr:'Ethnocentrisme',zh:'民族中心主义',fa:'قوم‌محوری',ti:'ናይ ብሄር ማእከላይነት',m:'Attitude that one\'s own culture is inherently superior to all others.'},
+    {id:'s17',q:'Accessibility',pa:'ਪਹੁੰਚਯੋਗਤਾ (Pahunchyogtaa)',es:'Accesibilidad',ar:'إمكانية الوصول',hi:'पहुंच',fr:'Accessibilité',zh:'可及性',fa:'دسترسی',ti:'ምርካብ',m:'One of five Medicare principles — wide range of accessible services.'},
+    {id:'s18',q:'Code of Ethics',pa:'ਨੈਤਿਕ ਸੰਹਿਤਾ (Naitik sanhita)',es:'Código de Ética',ar:'مدونة الأخلاقيات',hi:'नैतिक संहिता',fr:'Code de Déontologie',zh:'职业道德准则',fa:'آیین‌نامه اخلاقی',ti:'ናይ ሕጊ መምርሒ',m:'A profession\'s standards concerning the ethical behavior of its members.'},
+    {id:'s19',q:'Grief',pa:'ਸੋਗ (Sog)',es:'Duelo',ar:'الحزن',hi:'शोक',fr:'Deuil',zh:'悲痛',fa:'سوگ',ti:'ሓዘን',m:'Deep sorrow following death of a loved one or significant loss.'},
+    {id:'s20',q:'First Nations',pa:'ਪਹਿਲੀਆਂ ਕੌਮਾਂ (Pehliyan qauaman)',es:'Primeras Naciones',ar:'الأمم الأولى',hi:'प्रथम राष्ट्र',fr:'Premières Nations',zh:'原住民族',fa:'ملت‌های اول',ti:'ቀዳሞት ሕዝቢ',m:'Term referring to communities of status Indians; also a generic term.'},
+  ],
+
+  medical: [
+  // ── Core Anatomy (Enhanced) ──
+  {id:'m1',q:'Heart',pa:'ਦਿਲ (Dil)',es:'Corazón',ar:'القلب',hi:'दिल',fr:'Cœur',zh:'心脏',fa:'قلب',ti:'ልቢ',m:'Pumps blood throughout the body.'},
+  {id:'m2',q:'Lungs',pa:'ਫੇਫੜੇ (Phepharey)',es:'Pulmón',ar:'الرئة',hi:'फेफड़ा',fr:'Poumon',zh:'肺',fa:'ریه',ti:'ሳምቡቕ',m:'Responsible for breathing and gas exchange.'},
+  {id:'m3',q:'Brain',pa:'ਦਿਮਾਗ (Dimag)',es:'Cerebro',ar:'الدماغ',hi:'दिमाग',fr:'Cerveau',zh:'大脑',fa:'مغز',ti:'ሓንጎል',m:'Controls body functions, thoughts and movement.'},
+  {id:'m4',q:'Stomach',pa:'ਢਿੱਡ / ਮਿਹਦਾ (Tid)',es:'Estómago',ar:'المعدة',hi:'पेट',fr:'Estomac',zh:'胃',fa:'معده',ti:'ኣስቆርቆሪ',m:'Breaks down food for digestion.'},
+  {id:'m5',q:'Liver',pa:'ਜਿਗਰ (Jigar)',es:'Hígado',ar:'الكبد',hi:'जिगर',fr:'Foie',zh:'肝脏',fa:'کبد',ti:'ጸላም ከብዲ',m:'Processes nutrients and detoxifies blood.'},
+  {id:'m6',q:'Kidney',pa:'ਗੁਰਦਾ (Gurda)',es:'Riñón',ar:'الكلية',hi:'गुर्दा',fr:'Rein',zh:'肾脏',fa:'کلیه',ti:'ኩላሊት',m:'Filters blood and produces urine.'},
+  {id:'m7',q:'Spine',pa:'ਰੀੜ੍ਹ ਦੀ ਹੱਡੀ (Reerh di haddi)',es:'Columna',ar:'العمود الفقري',hi:'रीढ़',fr:'Colonne',zh:'脊柱',fa:'ستون فقرات',ti:'ሕምብርቲ',m:'Supports body and protects spinal cord.'},
+  {id:'m8',q:'Knee',pa:'ਗੋਡਾ (Goda)',es:'Rodilla',ar:'الركبة',hi:'घुटना',fr:'Genou',zh:'膝盖',fa:'زانو',ti:'ብርኪ',m:'Major joint for movement.'},
+  {id:'m9',q:'Shoulder',pa:'ਮੋਢਾ (Moda)',es:'Hombro',ar:'الكتف',hi:'कंधा',fr:'Épaule',zh:'肩膀',fa:'شانه',ti:'ትሕቲ ክሳድ',m:'Allows arm movement.'},
+  {id:'m10',q:'Wrist',pa:'ਗੁੱਟ (Gutt)',es:'Muñeca',ar:'الرسغ',hi:'कलाई',fr:'Poignet',zh:'手腕',fa:'مچ دست',ti:'ሕዝቂ',m:'Joint connecting hand and forearm.'},
+
+  // ── Symptoms (OPQRST aligned) ──
+  {id:'m11',q:'Pain',pa:'ਦਰਦ (Dard)',es:'Dolor',ar:'ألم',hi:'दर्द',fr:'Douleur',zh:'疼痛',fa:'درد',ti:'ቃንዛ',m:'Physical discomfort or suffering.'},
+  {id:'m12',q:'Chest Pain',pa:'ਛਾਤੀ ਵਿੱਚ ਦਰਦ',es:'Dolor de Pecho',ar:'ألم في الصدر',hi:'सीने में दर्द',fr:'Douleur Thoracique',zh:'胸痛',fa:'درد قفسه سینه',ti:'ቃንዛ ሕቆ',m:'May indicate heart or lung condition.'},
+  {id:'m13',q:'Shortness of Breath',pa:'ਸਾਹ ਚੜ੍ਹਣਾ',es:'Dificultad para Respirar',ar:'ضيق التنفس',hi:'सांस की तकलीफ',fr:'Essoufflement',zh:'气短',fa:'تنگی نفس',ti:'ጸገም ምስትንፋስ',m:'Difficulty breathing.'},
+  {id:'m14',q:'Fever',pa:'ਬੁਖ਼ਾਰ (Bukhar)',es:'Fiebre',ar:'حمى',hi:'बुखार',fr:'Fièvre',zh:'发烧',fa:'تب',ti:'ረስኒ',m:'High body temperature indicating infection.'},
+  {id:'m15',q:'Nausea',pa:'ਉਲਟੀ ਆਉਂਦੀ (Ulti)',es:'Náusea',ar:'غثيان',hi:'मतली',fr:'Nausée',zh:'恶心',fa:'تهوع',ti:'ምስታግስ',m:'Feeling of wanting to vomit.'},
+  {id:'m16',q:'Weakness',pa:'ਕਮਜ਼ੋਰੀ (Kamzori)',es:'Debilidad',ar:'ضعف',hi:'कमजोरी',fr:'Faiblesse',zh:'虚弱',fa:'ضعف',ti:'ድኻም',m:'Reduced strength or energy.'},
+
+  // ── Conditions ──
+  {id:'m17',q:'Diabetes',pa:'ਸ਼ੂਗਰ ਦੀ ਬਿਮਾਰੀ',es:'Diabetes',ar:'السكري',hi:'मधुमेह',fr:'Diabète',zh:'糖尿病',fa:'دیابت',ti:'ሕማም ሽኮር',m:'High blood sugar condition.'},
+  {id:'m18',q:'Hypertension',pa:'ਬਲੱਡ ਪ੍ਰੈਸ਼ਰ ਵੱਧਣਾ',es:'Hipertensión',ar:'ارتفاع ضغط الدم',hi:'उच्च रक्तचाप',fr:'Hypertension',zh:'高血压',fa:'فشار خون بالا',ti:'ልዑል ጸቕጢ',m:'High blood pressure.'},
+  {id:'m19',q:'Stroke',pa:'ਦੌਰਾ ਪੈਣਾ',es:'Derrame Cerebral',ar:'سكتة دماغية',hi:'स्ट्रोक',fr:'AVC',zh:'中风',fa:'سکته مغزی',ti:'ዕንወት ሓንጎል',m:'Loss of blood supply to brain.'},
+  {id:'m20',q:'Heart Attack',pa:'ਦਿਲ ਦਾ ਦੌਰਾ',es:'Ataque al Corazón',ar:'نوبة قلبية',hi:'दिल का दौरा',fr:'Crise Cardiaque',zh:'心脏病发作',fa:'حمله قلبی',ti:'ዕንወት ልቢ',m:'Blocked blood flow to heart.'},
+
+  // ── Mental Health ──
+  {id:'m21',q:'Anxiety',pa:'ਚਿੰਤਾ (Chinta)',es:'Ansiedad',ar:'قلق',hi:'चिंता',fr:'Anxiété',zh:'焦虑',fa:'اضطراب',ti:'ጭንቀት',m:'Excessive worry.'},
+  {id:'m22',q:'Depression',pa:'ਉਦਾਸੀ (Udaasi)',es:'Depresión',ar:'اكتئاب',hi:'अवसाद',fr:'Dépression',zh:'抑郁',fa:'افسردگی',ti:'ምሕዝነት',m:'Persistent sadness.'},
+  {id:'m23',q:'Psychosis',pa:'ਮਨੋਰੋਗ',es:'Psicosis',ar:'ذهان',hi:'मनोविकृति',fr:'Psychose',zh:'精神病',fa:'روان‌پریشی',ti:'ሕማም ኣእምሮ',m:'Loss of contact with reality.'},
+
+  // ── Emergency ──
+  {id:'m24',q:'Fracture',pa:'ਹੱਡੀ ਟੁੱਟਣਾ',es:'Fractura',ar:'كسر',hi:'फ्रैक्चर',fr:'Fracture',zh:'骨折',fa:'شکستگی',ti:'ምስባር',m:'Broken bone.'},
+  {id:'m25',q:'Seizure',pa:'ਮਿਰਗੀ (Mirgi)',es:'Convulsión',ar:'نوبة',hi:'दौरा',fr:'Crise',zh:'癫痫发作',fa:'تشنج',ti:'ንቁጽሪ',m:'Sudden uncontrolled electrical activity in brain.'},
+
+  // ── Procedures & Communication ──
+  {id:'m26',q:'Blood Test',pa:'ਖੂਨ ਦੀ ਜਾਂਚ',es:'Análisis de Sangre',ar:'تحليل الدم',hi:'खून की जांच',fr:'Analyse',zh:'血液检查',fa:'آزمایش خون',ti:'ምርመራ ደም',m:'Lab test to assess health.'},
+  {id:'m27',q:'Surgery',pa:'ਆਪ੍ਰੇਸ਼ਨ',es:'Cirugía',ar:'جراحة',hi:'सर्जरी',fr:'Chirurgie',zh:'手术',fa:'جراحی',ti:'ቀዶ ጥገና',m:'Medical operation.'},
+  {id:'m28',q:'Medication',pa:'ਦਵਾਈਆਂ (Dawaiyan)',es:'Medicamentos',ar:'أدوية',hi:'दवाइयाँ',fr:'Médicaments',zh:'药物',fa:'دارو',ti:'መድሃኒት',m:'Drugs used for treatment.'},
+
+  // ── Maternal Health ──
+  {id:'m29',q:'Pregnancy',pa:'ਗਰਭ (Garbh)',es:'Embarazo',ar:'حمل',hi:'गर्भावस्था',fr:'Grossesse',zh:'怀孕',fa:'بارداری',ti:'ጥንሲ',m:'Fetal development period.'},
+  {id:'m30',q:'Miscarriage',pa:'ਗਰਭਪਾਤ',es:'Aborto Espontáneo',ar:'إجهاض',hi:'गर्भपात',fr:'Fausse Couche',zh:'流产',fa:'سقط جنین',ti:'ምፍሳስ',m:'Loss of pregnancy.'},
+],
+
+  irb: [
+    {id:'i1',q:'Non-Refoulement',pa:'ਵਾਪਸ ਨਾ ਕਰਨਾ (Vaapas na karna)',es:'No Devolución',ar:'عدم الإعادة القسرية',hi:'नॉन-रिफाउलमेंट',fr:'Non-Refoulement',zh:'不驱回原则',fa:'عدم اعاده',ti:'ምምላስ ዘይምግባር',m:'International principle of not returning a refugee to a country where they face persecution.'},
+    {id:'i2',q:'Convention Refugee',pa:'ਕਨਵੈਨਸ਼ਨ ਸ਼ਰਨਾਰਥੀ (Convention sharnarthi)',es:'Refugiado Convencional',ar:'لاجئ بموجب الاتفاقية',hi:'कन्वेंशन शरणार्थी',fr:'Réfugié Conventionnel',zh:'公约难民',fa:'پناهنده کنوانسیون',ti:'ስምምዕ ስደተኛ',m:'Person with well-founded fear of persecution based on race, religion, nationality or political opinion.'},
+    {id:'i3',q:'Basis of Claim (BOC)',pa:'ਦਾਅਵੇ ਦਾ ਆਧਾਰ (Daave da aadhaar)',es:'Base del Reclamo',ar:'أساس الادعاء',hi:'दावे का आधार',fr:'Fondement de la Demande',zh:'申请依据',fa:'مبنای ادعا',ti:'ናይ ሕቶ መሰረት',m:'Key document filled by claimant describing why they left their country.'},
+    {id:'i4',q:'PRRA',pa:'ਦੇਸ਼ ਨਿਕਾਲੇ ਤੋਂ ਪਹਿਲਾਂ ਖ਼ਤਰੇ ਦਾ ਮੁਲਾਂਕਣ',es:'Evaluación de Riesgo Previo',ar:'تقييم المخاطر قبل الترحيل',hi:'PRRA',fr:'Évaluation des Risques',zh:'驱逐前风险评估',fa:'ارزیابی خطر',ti:'ቅድሚ ምስጓጉ ናይ ሓደጋ ምግምጋም',m:'Pre-Removal Risk Assessment — assessment of risks if returned before removal.'},
+    {id:'i5',q:'IFA (Internal Flight Alternative)',pa:'ਅੰਦਰੂਨੀ ਉਡਾਣ ਵਿਕਲਪ (IFA)',es:'Alternativa de Huida Interna',ar:'البديل الداخلي للفرار',hi:'आंतरिक उड़ान विकल्प',fr:'Alternative de Fuite Interne',zh:'国内逃离替代',fa:'جایگزین فرار داخلی',ti:'ውሽጣዊ ናይ ሃዲምካ ምምላስ',m:'Whether the claimant could safely live in another part of their own country.'},
+    {id:'i6',q:'Well-Founded Fear',pa:'ਵਾਜਬ ਡਰ (Vaajab dar)',es:'Temor Fundado',ar:'خوف مبرر',hi:'उचित भय',fr:'Crainte Fondée',zh:'有充分理由的恐惧',fa:'ترس موجه',ti:'ምኽንያታዊ ፍርሒ',m:'Fear of persecution with both objective evidence and subjective experience.'},
+    {id:'i7',q:'Claimant',pa:'ਦਾਅਵੇਦਾਰ (Daavedar)',es:'Solicitante',ar:'مقدم الطلب',hi:'दावेदार',fr:'Demandeur',zh:'申请人',fa:'متقاضی',ti:'ሕቶ ዘቕረበ',m:'Person applying for refugee protection in Canada.'},
+    {id:'i8',q:'Detention',pa:'ਨਜ਼ਰਬੰਦੀ (Nazarbandi)',es:'Detención',ar:'الاحتجاز',hi:'नजरबंदी',fr:'Détention',zh:'拘留',fa:'بازداشت',ti:'ማእሰርቲ',m:'Holding a person in custody during an immigration investigation.'},
+    {id:'i9',q:'Removal Order',pa:'ਦੇਸ਼ ਨਿਕਾਲਾ ਹੁਕਮ (Desh nikalaa hukam)',es:'Orden de Expulsión',ar:'أمر الترحيل',hi:'निर्वासन आदेश',fr:'Mesure de Renvoi',zh:'驱逐令',fa:'دستور اخراج',ti:'ናይ ምስጓጉ ትእዛዝ',m:'Official order requiring a person to leave Canada.'},
+    {id:'i10',q:'RAD (Refugee Appeal Division)',pa:'ਸ਼ਰਨਾਰਥੀ ਅਪੀਲ ਡਿਵੀਜ਼ਨ',es:'División de Apelaciones',ar:'شعبة استئناف اللاجئين',hi:'शरणार्थी अपील प्रभाग',fr:'Section d\'Appel des Réfugiés',zh:'难民上诉部',fa:'بخش تجدیدنظر',ti:'ናይ ስደተኛ ይግባይ ክፍሊ',m:'IRB division that reviews decisions of the Refugee Protection Division.'},
+    {id:'i11',q:'RPD (Refugee Protection Division)',pa:'ਸ਼ਰਨਾਰਥੀ ਸੁਰੱਖਿਆ ਡਿਵੀਜ਼ਨ',es:'División de Protección',ar:'شعبة حماية اللاجئين',hi:'शरणार्थी सुरक्षा प्रभाग',fr:'Section de la Protection',zh:'难民保护部',fa:'بخش حفاظت',ti:'ናይ ስደተኛ ሓለዋ ክፍሊ',m:'IRB division conducting first-instance hearings of refugee claims.'},
+    {id:'i12',q:'UNHCR',pa:'ਸੰਯੁਕਤ ਰਾਸ਼ਟਰ ਸ਼ਰਨਾਰਥੀ ਏਜੰਸੀ',es:'ACNUR',ar:'مفوضية اللاجئين',hi:'UNHCR',fr:'HCR',zh:'联合国难民署',fa:'کمیساریای سازمان ملل',ti:'UNHCR',m:'United Nations agency protecting and supporting refugees worldwide.'},
+    {id:'i13',q:'Credibility',pa:'ਭਰੋਸੇਯੋਗਤਾ (Bharoseyogtaa)',es:'Credibilidad',ar:'المصداقية',hi:'विश्वसनीयता',fr:'Crédibilité',zh:'可信度',fa:'اعتبار',ti:'እምነትነት',m:'Assessment of the believability of a claimant\'s testimony.'},
+    {id:'i14',q:'Natural Justice',pa:'ਕੁਦਰਤੀ ਨਿਆਂ (Kudrati nyaay)',es:'Justicia Natural',ar:'العدالة الطبيعية',hi:'प्राकृतिक न्याय',fr:'Justice Naturelle',zh:'自然正义',fa:'عدالت طبیعی',ti:'ባህርያዊ ፍትሒ',m:'Principle of a fair hearing and unbiased decision-making.'},
+    {id:'i15',q:'De Novo Hearing',pa:'ਨਵੀਂ ਸੁਣਵਾਈ (Nayi sunvayi)',es:'Audiencia De Novo',ar:'جلسة استماع جديدة',hi:'नई सुनवाई',fr:'Audience De Novo',zh:'重新聆讯',fa:'دادرسی مجدد',ti:'ሓድሽ ምስማዕ',m:'A fresh hearing conducted independently of any previous decision.'},
+    {id:'i16',q:'Cessation',pa:'ਸ਼ਰਨਾਰਥੀ ਦਰਜਾ ਖਤਮ ਕਰਨਾ',es:'Cesación',ar:'إنهاء وضع اللاجئ',hi:'समाप्ति',fr:'Cessation',zh:'停止',fa:'توقف',ti:'ምቁራጽ',m:'Ending of refugee status when circumstances in country of origin have changed.'},
+    {id:'i17',q:'Disclosure',pa:'ਖੁਲਾਸਾ (Khulaasa)',es:'Divulgación',ar:'الإفصاح',hi:'प्रकटीकरण',fr:'Divulgation',zh:'披露',fa:'افشاسازی',ti:'ምዝርዛር',m:'Providing documents to all parties before a hearing.'},
+    {id:'i18',q:'Fear of Persecution',pa:'ਜ਼ੁਲਮ ਦਾ ਡਰ (Zulam da dar)',es:'Temor de Persecución',ar:'الخوف من الاضطهاد',hi:'उत्पीड़न का डर',fr:'Crainte de Persécution',zh:'遭受迫害的恐惧',fa:'ترس از آزار',ti:'ፍርሒ ጭቆና',m:'Well-founded fear of persecution in country of origin.'},
+    {id:'i19',q:'Stay of Removal',pa:'ਦੇਸ਼ ਨਿਕਾਲੇ ਦੀ ਰੋਕ (Desh nikalay di rok)',es:'Suspensión de Expulsión',ar:'تعليق الترحيل',hi:'निर्वासन की रोक',fr:'Sursis au Renvoi',zh:'暂缓驱逐',fa:'تعلیق اخراج',ti:'ምዕጋት ምስጓጉ',m:'Temporary suspension of removal proceedings.'},
+    {id:'i20',q:'Standard of Proof',pa:'ਸਬੂਤ ਦਾ ਮਿਆਰ (Saboot da miyaar)',es:'Estándar de Prueba',ar:'معيار الإثبات',hi:'प्रमाण का मानक',fr:'Norme de Preuve',zh:'证明标准',fa:'معیار اثبات',ti:'ናይ ምረጋገጽ ደረጃ',m:'The level of evidence required to prove a claim.'},
+  ],
+};
