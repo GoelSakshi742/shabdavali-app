@@ -46,7 +46,9 @@ export default function HomeScreen({ navigation }) {
     return Math.min(100, Math.round((p.correct / total) * 100));
   };
 
-  function startQuiz(domain, deckId) {
+  async function startQuiz(domain, deckId) {
+    // Always read lang fresh from storage to avoid stale state
+    const freshLang = (await AsyncStorage.getItem('shabdavali_lang')) || lang || 'pa';
     let cards = [];
     if (domain === 'all') {
       cards = builtInDomains.flatMap(d => BUILT_IN_CARDS[d].map(c => ({ ...c, domain: d })));
@@ -57,7 +59,7 @@ export default function HomeScreen({ navigation }) {
       cards = BUILT_IN_CARDS[domain].map(c => ({ ...c, domain }));
     }
     cards = cards.sort(() => Math.random() - 0.5);
-    navigation.navigate('Quiz', { cards, lang, domain: deckId || domain });
+    navigation.navigate('Quiz', { cards, lang: freshLang, domain: deckId || domain });
   }
 
   return (
