@@ -15,12 +15,15 @@ export default function HomeScreen({ navigation }) {
   const [selectedDomain, setSelectedDomain] = useState('all');
 
   const builtInDomains = ['legal','social','medical','irb'];
+  const totalCards = builtInDomains.reduce((acc, d) => acc + BUILT_IN_CARDS[d].length, 0);
+  const domainCount = (domain) => BUILT_IN_CARDS[domain].length;
   const totalMastered = builtInDomains.reduce((acc, d) => acc + (progress[d]?.correct || 0), 0);
 
   const domainProgress = (domain) => {
     const p = progress[domain];
     if (!p) return 0;
-    return Math.min(100, Math.round((p.correct / 20) * 100));
+    const total = BUILT_IN_CARDS[domain].length;
+    return Math.min(100, Math.round((p.correct / total) * 100));
   };
 
   function startQuiz(domain, deckId) {
@@ -50,7 +53,7 @@ export default function HomeScreen({ navigation }) {
 
         {/* Stats */}
         <View style={s.statsRow}>
-          <View style={s.statCard}><Text style={s.statN}>80+</Text><Text style={s.statL}>Built-in</Text></View>
+          <View style={s.statCard}><Text style={s.statN}>{totalCards}</Text><Text style={s.statL}>Built-in</Text></View>
           <View style={s.statCard}><Text style={[s.statN,{color:COLORS.accent}]}>{totalMastered}</Text><Text style={s.statL}>Practiced</Text></View>
           <View style={s.statCard}><Text style={s.statN}>{decks.length}</Text><Text style={s.statL}>My Decks</Text></View>
         </View>
@@ -78,7 +81,7 @@ export default function HomeScreen({ navigation }) {
                   <View style={[s.domainBarFill, { width: pct+'%', backgroundColor: col }]} />
                 </View>
                 <Text style={[s.domainName, { color: col }]}>{DOMAIN_NAMES[d]}</Text>
-                <Text style={s.domainCount}>20 terms · {pct}%</Text>
+                <Text style={s.domainCount}>{domainCount(d)} terms · {pct}%</Text>
               </TouchableOpacity>
             );
           })}
@@ -86,7 +89,7 @@ export default function HomeScreen({ navigation }) {
 
         {/* Start all */}
         <TouchableOpacity style={s.startAll} onPress={() => startQuiz('all')}>
-          <Text style={s.startAllText}>Study all 80 terms</Text>
+          <Text style={s.startAllText}>Study all {totalCards} terms</Text>
           <Ionicons name="arrow-forward" size={18} color={COLORS.bg} />
         </TouchableOpacity>
 
