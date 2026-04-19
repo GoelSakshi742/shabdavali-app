@@ -7,8 +7,7 @@
     "userInterfaceStyle": "dark",
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "publicPath": "/shabdavali-app/"
+      "output": "single"
     },
     "ios": {
       "supportsTablet": false,
