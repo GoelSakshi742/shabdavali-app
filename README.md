@@ -27,15 +27,15 @@ Works on any phone browser. No login. No download. Always free.
 ## 📱 Screenshots
 
 ### Home Screen
-![Home Screen](docs/screenshots/home.png)
+![Home Screen](docs/screenshots/Home.png)
 *280 built-in cards across 4 domains · 8 quiz languages · progress bars per domain*
 
 ### Multiple Choice Quiz
-![Quiz Screen](docs/screenshots/quiz.png)
+![Quiz Screen](docs/screenshots/Quiz.jpg)
 *3 study modes: Flashcards · Multiple Choice · Identify Term*
 
 ### Settings & Progress
-![Settings Screen](docs/screenshots/settings.png)
+![Settings Screen](docs/screenshots/Settings.PNG)
 *Per-domain progress tracking · accuracy stats · language switcher*
 
 ---
