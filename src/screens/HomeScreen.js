@@ -12,6 +12,16 @@ import { useLang, useProgress, useCustomDecks } from '../hooks/useStorage';
 
 export default function HomeScreen({ navigation }) {
   const [lang, setLang] = useLang();
+
+  // Re-read lang every time screen comes into focus
+  // (in case it was changed in Settings)
+  useFocusEffect(
+    useCallback(() => {
+      AsyncStorage.getItem('shabdavali_lang').then(v => {
+        if (v) setLang(v);
+      });
+    }, [])
+  );
   const [progress, setProgress] = useState({});
 
   useFocusEffect(

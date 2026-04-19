@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
-import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES } from '../utils/theme';
+import { COLORS, DOMAIN_COLORS, DOMAIN_NAMES, LANG_NAMES } from '../utils/theme';
 import { BUILT_IN_CARDS } from '../data/cards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -163,9 +163,9 @@ export default function QuizScreen({ route, navigation }) {
                 <Text style={s.hint}>Tap to reveal</Text>
               ) : (
                 <View style={s.ansBox}>
-                  <Text style={s.ansLabel}>Punjabi</Text>
-                  <Text style={s.ansPa}>{card.pa}</Text>
-                  {lang !== 'pa' && tr && <Text style={s.ansLang}>{tr}</Text>}
+                  <Text style={s.ansLabel}>{lang === 'pa' ? 'ਪੰਜਾਬੀ' : LANG_NAMES[lang] || 'ਪੰਜਾਬੀ'}</Text>
+                  <Text style={s.ansPa}>{tr || card.pa}</Text>
+                  {lang !== 'pa' && card.pa && <Text style={s.ansLang}>{card.pa}</Text>}
                   <View style={s.div} />
                   <Text style={s.ansM}>{card.m}</Text>
                 </View>
@@ -190,7 +190,7 @@ export default function QuizScreen({ route, navigation }) {
         {mode === 'mcq' && (
           <>
             <View style={[s.card, { borderTopColor: domainColor }]}>
-              <Text style={s.hint}>What is the Punjabi translation of:</Text>
+              <Text style={s.hint}>What is the {lang === 'pa' ? 'Punjabi' : (LANG_NAMES[lang] || 'Punjabi')} translation of:</Text>
               <Text style={s.cardQ}>{card.q}</Text>
             </View>
             <View style={s.mcqOpts}>
@@ -225,8 +225,8 @@ export default function QuizScreen({ route, navigation }) {
           <>
             <View style={[s.card, { borderTopColor: domainColor }]}>
               <Text style={s.hint}>What English term matches this?</Text>
-              <Text style={[s.ansPa, { fontSize: 20, marginBottom: 6 }]}>{card.pa}</Text>
-              {lang !== 'pa' && tr && <Text style={s.ansLang}>{tr}</Text>}
+              <Text style={[s.ansPa, { fontSize: 20, marginBottom: 6 }]}>{tr || card.pa}</Text>
+              {lang !== 'pa' && card.pa && <Text style={s.ansLang}>{card.pa}</Text>}
               <View style={s.div} />
               <Text style={s.ansM}>{card.m}</Text>
             </View>

@@ -31,11 +31,11 @@ Works on any phone browser. No login. No download. Always free.
 *280 built-in cards across 4 domains · 8 quiz languages · progress bars per domain*
 
 ### Multiple Choice Quiz
-![Quiz Screen](docs/screenshots/Quiz.jpg)
+![Quiz Screen](docs/screenshots/Quiz.png)
 *3 study modes: Flashcards · Multiple Choice · Identify Term*
 
 ### Settings & Progress
-![Settings Screen](docs/screenshots/Settings.PNG)
+![Settings Screen](docs/screenshots/Settings.png)
 *Per-domain progress tracking · accuracy stats · language switcher*
 
 ---
