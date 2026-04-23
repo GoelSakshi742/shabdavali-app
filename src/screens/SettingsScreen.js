@@ -33,7 +33,7 @@ export default function SettingsScreen() {
     }, [])
   );
 
-  const builtInDomains = ['legal', 'social', 'medical', 'irb'];
+  const builtInDomains = ['legal', 'social', 'medical', 'irb', 'settlement', 'general'];
 
   // Accurate stats from stored progress
   const totalStudied  = builtInDomains.reduce((a, d) => a + (progress[d]?.total   || 0), 0);

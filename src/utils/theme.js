@@ -17,6 +17,8 @@ export const COLORS = {
   medical:  '#1d9e75',
   irb:      '#c9a84c',
   custom:   '#378add',
+  settlement: '#2e86ab',
+  general:  '#6b8f71',
 };
 
 export const DOMAIN_COLORS = {
@@ -25,6 +27,8 @@ export const DOMAIN_COLORS = {
   medical: COLORS.medical,
   irb:     COLORS.irb,
   custom:  COLORS.custom,
+  settlement: COLORS.settlement,
+  general: COLORS.general,
 };
 
 export const DOMAIN_NAMES = {
@@ -33,6 +37,8 @@ export const DOMAIN_NAMES = {
   medical: 'Medical',
   irb:     'IRB / Refugee',
   custom:  'Custom',
+  settlement: 'Settlement',
+  general: 'General',
 };
 
 export const LANG_NAMES = {

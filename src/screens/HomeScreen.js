@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
   const { decks } = useCustomDecks();
   const [selectedDomain, setSelectedDomain] = useState('all');
 
-  const builtInDomains = ['legal','social','medical','irb'];
+  const builtInDomains = ['legal','social','medical','irb','settlement','general'];
   const totalCards = builtInDomains.reduce((acc, d) => acc + BUILT_IN_CARDS[d].length, 0);
   const domainCount = (domain) => BUILT_IN_CARDS[domain].length;
   const totalMastered = builtInDomains.reduce((acc, d) => acc + (progress[d]?.correct || 0), 0);
