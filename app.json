@@ -9,7 +9,6 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      
       "backgroundColor": "#0d0d0f"
     },
     "ios": {
@@ -25,7 +24,9 @@
       "package": "com.yourname.shabdavali"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "publicPath": "/shabdavali-app/"
     },
     "extra": {
       "eas": {
